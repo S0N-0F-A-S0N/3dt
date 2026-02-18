@@ -61,12 +61,13 @@ return class EntityCache extends EventTarget {
   }
 
   getSceneGraph(uuid) {
-    const graph = {}
+    const graph = {};
     const scene = this.getEntity(uuid);
     const objects = [scene];
 
+    // Iterative DFS (using stack) instead of BFS (using shift) for performance
     while (objects.length) {
-      const object = objects.shift();
+      const object = objects.pop();
       this._registerEntity(object);
 
       graph[object.uuid] = {
@@ -75,13 +76,16 @@ return class EntityCache extends EventTarget {
         baseType: utils.getBaseType(object),
         children: [],
       };
- 
-      if (object.parent) {
+
+      if (object.parent && graph[object.parent.uuid]) {
         graph[object.parent.uuid].children.push(object.uuid);
       }
 
       if (object.children) {
-        objects.push(...object.children);
+        // Iterate in reverse to process children in original order
+        for (let i = object.children.length - 1; i >= 0; i--) {
+          objects.push(object.children[i]);
+        }
       }
     }
 
