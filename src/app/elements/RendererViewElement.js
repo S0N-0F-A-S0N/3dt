@@ -74,8 +74,7 @@ export default class RendererViewElement extends LitElement {
     flex-direction: column;
     width: 100%;
   }
-  /* quick hack, need to rethink title components */
-  title-bar[title="Memory"] {
+  title-bar ~ title-bar {
     border-top: 1px solid var(--title-border-color);
   }
   ul {
