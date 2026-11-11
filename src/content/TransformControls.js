@@ -632,14 +632,6 @@ THREE.TransformControls = function ( camera, domElement ) {
 
 	}
 
-	// TODO: deprecate
-
-	this.getMode = function () {
-
-		return scope.mode;
-
-	};
-
 	this.setMode = function ( mode ) {
 
 		scope.mode = mode;
