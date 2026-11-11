@@ -10,7 +10,8 @@
     "build:dist:chrome": "./scripts/build-dist.sh chrome",
     "serve": "http-server . -c-1",
     "version": "node ./scripts/version.js && git add *.json",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "test": "vitest run"
   },
   "repository": {
     "type": "git",
@@ -31,7 +32,8 @@
   },
   "devDependencies": {
     "http-server": "^14.1.1",
-    "json": "10.0.0"
+    "json": "10.0.0",
+    "vitest": "^5.1.0"
   },
   "@pika/web": {
     "webDependencies": [
