@@ -64,22 +64,26 @@ const utils = {
       // handle attributes
     }
     else if (entity.isMaterial) {
-      for (let key of Object.keys(entity)) {
-        // @TODO cache textures used as uniforms here as well
-        const texture = entity[key];
-        if (texture && texture.isTexture) {
-          utils.forEachDependency(texture, fn, options);
+      for (let key in entity) {
+        if (Object.prototype.hasOwnProperty.call(entity, key)) {
+          // @TODO cache textures used as uniforms here as well
+          const texture = entity[key];
+          if (texture && texture.isTexture) {
+            utils.forEachDependency(texture, fn, options);
+          }
         }
       }
       if (entity.uniforms) {
-        for (let name of Object.keys(entity.uniforms)) {
-          const value = entity.uniforms[name].value;
-          if (value && value.isTexture) {
-            // What other "dependency" data could a material have?
-            // more geometry/buffers?
-            utils.forEachDependency(value, fn, options);
+        for (let name in entity.uniforms) {
+          if (Object.prototype.hasOwnProperty.call(entity.uniforms, name)) {
+            const value = entity.uniforms[name].value;
+            if (value && value.isTexture) {
+              // What other "dependency" data could a material have?
+              // more geometry/buffers?
+              utils.forEachDependency(value, fn, options);
+            }
           }
-        } 
+        }
       }
     }
     else if (entity.isTexture) {
