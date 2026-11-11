@@ -86,15 +86,18 @@ export default class KeyValueElement extends LitElement {
         case 'vec4':
           const arity = this.type === 'vec2' ? 2 :
                         this.type === 'vec3' ? 3 : 4;
-          valueElement = [...new Array(arity)].map((_, i) => html`<number-input
-            .id="${i === 0 ? this._id : ''}"
-            axis="${i === 0 ? 'x' : i === 1 ? 'y' : i === 2 ? 'z' : 'w'}"
-            .value="${this.value[i]}"
-            .min="${this.min}"
-            .max="${this.max}"
-            .step="${this.step}"
-            .precision="${this.precision}"
-            />`);
+          valueElement = [];
+          for (let i = 0; i < arity; i++) {
+            valueElement.push(html`<number-input
+              .id="${i === 0 ? this._id : ''}"
+              axis="${i === 0 ? 'x' : i === 1 ? 'y' : i === 2 ? 'z' : 'w'}"
+              .value="${this.value[i]}"
+              .min="${this.min}"
+              .max="${this.max}"
+              .step="${this.step}"
+              .precision="${this.precision}"
+              />`);
+          }
           break;
         case 'image':
         case 'texture':
