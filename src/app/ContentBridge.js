@@ -165,7 +165,7 @@ export default class ContentBridge extends EventTarget {
         break;
       case 'register':
         this.revision = data.revision;
-        this[$eval](`console.log("three-devtools: debugging three.js r${this.revision}")`);
+        this[$eval](`console.log("three-devtools: debugging three.js r" + ${JSON.stringify(this.revision)})`);
         break;
       case 'committed':
         this[$db].clear();
@@ -245,7 +245,7 @@ export default class ContentBridge extends EventTarget {
   }
 
   _contentLog(string) {
-    this[$eval](`console.log("${string}")`);
+    this[$eval](`console.log(${JSON.stringify(string)})`);
   }
 
   async [$eval](string) {
