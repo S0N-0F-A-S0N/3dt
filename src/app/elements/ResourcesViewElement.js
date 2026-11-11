@@ -61,8 +61,11 @@ export default class ResourcesViewElement extends LitElement {
     --tree-item-arrow-width: 0.8em;
   }
   #tree-root:focus {
-    /* TODO how can focus be shown in the tree view? */
     outline: none;
+    --tree-item-selected-color: var(--selection-fg-color);
+    --tree-item-selected-background-color: var(--selection-bg-color);
+    --tree-item-hover-selected-color: var(--selection-fg-color);
+    --tree-item-hover-selected-background-color: var(--selection-bg-color);
   }
 </style>
 <title-bar title="${title}">
