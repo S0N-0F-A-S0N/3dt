@@ -202,7 +202,9 @@ return class EntityCache extends EventTarget {
 
     // Accumulate serialized dependencies.
     for (let resourceType of ['geometries', 'materials', 'textures', 'shapes']) {
-      for (let resource of Object.values(meta[resourceType])) {
+      const typeResources = meta[resourceType];
+      for (let key in typeResources) {
+        let resource = typeResources[key];
         if (!entitiesAdded.has(resource.uuid)) {
           entities.push(resource);
           entitiesAdded.add(resource.uuid);
@@ -214,7 +216,7 @@ return class EntityCache extends EventTarget {
     // if they haven't been sent over the wire yet
     for (let resourceType of ['images', 'attributes']) {
       const resources = this.resources[resourceType];
-      for (let uuid of Object.keys(resources)) {
+      for (let uuid in resources) {
         if (!this.resourcesSent.has(uuid)) {
           const entity = resources[uuid];
           this.resourcesSent.set(uuid, entity.version);
@@ -304,7 +306,8 @@ return class EntityCache extends EventTarget {
     // Moves all Geometry attributes to their own category,
     // like textures do with images, so that they don't
     // clog up the data transfer.
-    for (let geo of Object.values(data.geometries)) {
+    for (let key in data.geometries) {
+      let geo = data.geometries[key];
       if (geo.data) {
         const id = `attrs-${geo.uuid}`;
         data.attributes[id] = geo.data;
