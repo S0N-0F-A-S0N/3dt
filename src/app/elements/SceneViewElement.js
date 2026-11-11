@@ -63,8 +63,11 @@ export default class SceneViewElement extends LitElement {
     overflow-x: hidden;
   }
   :host > tree-item:focus {
-    /* TODO how can focus be shown in the tree view? */
     outline: none;
+    --tree-item-selected-color: var(--selection-fg-color);
+    --tree-item-selected-background-color: var(--selection-bg-color);
+    --tree-item-hover-selected-color: var(--selection-fg-color);
+    --tree-item-hover-selected-background-color: var(--selection-bg-color);
   }
 
   ${ChromeSelectStyle}

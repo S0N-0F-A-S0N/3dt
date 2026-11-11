@@ -6,10 +6,10 @@
 
   --tree-item-hover-color: inherit;
   --tree-item-hover-background-color: rgba(56, 121, 217, 0.1);
-  --tree-item-selected-color: var(--selection-fg-color);
-  --tree-item-selected-background-color: var(--selection-bg-color);
-  --tree-item-hover-selected-color: var(--selection-fg-color);
-  --tree-item-hover-selected-background-color: var(--selection-bg-color);
+  --tree-item-selected-color: var(--selection-inactive-fg-color);
+  --tree-item-selected-background-color: var(--selection-inactive-bg-color);
+  --tree-item-hover-selected-color: var(--selection-inactive-fg-color);
+  --tree-item-hover-selected-background-color: var(--selection-inactive-bg-color);
   --tree-item-indent-per-level: 10px;
   --tree-item-row-height: 20px;
   --tree-item-border-color: var(--divider-color);
