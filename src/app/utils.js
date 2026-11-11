@@ -13,7 +13,15 @@ export const getEntityName = entity => {
 export const hexNumberToCSSString = hex =>
   `#${("000000" + (hex).toString(16)).slice(-6)}`;
 
-export const cssStringToHexNumber = string => +`0x${string.substr(1)}`;
+export const cssStringToHexNumber = string => {
+  if (typeof string !== 'string') return NaN;
+  let hex = string.startsWith('#') ? string.slice(1) : string;
+  if (hex.length === 3) {
+    hex = hex.split('').map(char => char + char).join('');
+  }
+  if (hex.length !== 6) return NaN;
+  return parseInt(hex, 16);
+};
 
 /**
  * Operates on a serialized THREE object,
