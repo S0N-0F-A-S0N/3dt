@@ -278,6 +278,7 @@ return class EntityCache extends EventTarget {
       // If this throws, it could be because of some object not being serializable.
       // @TODO handle this, throw it for now.
       console.error(`${entity.uuid} does not appear to be serializable.`, e);
+      throw e;
     }
     
     return json && json.object ? json.object : json; 
